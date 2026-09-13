@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ST Glory Bot V2</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#090d16;color:#fff;font-family:Arial,sans-serif}
+.container{max-width:920px;margin:auto;padding:20px}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.logo{font-size:24px;font-weight:800}.pill{padding:8px 12px;background:#172039;border-radius:20px;color:#b9c4ff}
+.hero,.card,.member{background:#111827;border:1px solid #263149;border-radius:18px}
+.hero{padding:22px}.hero h1{font-size:30px;margin:0 0 5px}.muted{color:#98a3ba}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}.stat{padding:17px;background:#0d1423;border:1px solid #253047;border-radius:15px}.num{font-size:25px;font-weight:800;margin-top:6px}
+h2{font-size:20px}.member{display:flex;align-items:center;gap:12px;padding:13px 15px;margin:9px 0}.rank{width:34px;font-weight:800}.mname{flex:1}.actions{display:flex;gap:6px}button{border:0;border-radius:9px;padding:9px 12px;background:#5865f2;color:#fff;font-weight:700}button.danger{background:#b63c4c}button.secondary{background:#263149}
+.section{margin-top:22px}.card{padding:18px}.form{display:grid;grid-template-columns:1fr 1fr auto;gap:8px;align-items:end}input{width:100%;padding:12px;border-radius:9px;border:1px solid #303b55;background:#0b1220;color:#fff;margin-top:5px}
+#login{position:fixed;inset:0;background:#090d16;display:flex;align-items:center;justify-content:center;padding:20px;z-index:5}.loginbox{width:100%;max-width:380px;padding:25px;background:#111827;border:1px solid #263149;border-radius:18px}.loginbox input{margin-bottom:10px}
+.hidden{display:none!important}.notice{margin-top:10px;color:#ffb3b3;min-height:18px}
+@media(max-width:650px){.stats{grid-template-columns:1fr}.form{grid-template-columns:1fr}.actions button{padding:8px}}
+</style>
+</head>
+<body>
+
+<div id="login">
+  <div class="loginbox">
+    <h2>🔐 ST Glory Bot Admin</h2>
+    <p class="muted">V2 prototype admin panel</p>
+    <input id="pass" type="password" placeholder="Admin password">
+    <button onclick="login()" style="width:100%">Login</button>
+    <div id="err" class="notice"></div>
+  </div>
+</div>
+
+<div class="container">
+<header class="top">
+  <div class="logo">🏆 ST Glory Bot</div>
+  <div><span class="pill">V2 Admin</span> <button class="secondary" onclick="logout()">Logout</button></div>
+</header>
+
+<div class="hero">
+  <h1>ST KINGDOM</h1>
+  <div class="muted">Guild Glory Management Dashboard</div>
+  <div class="stats">
+    <div class="stat"><div class="muted">Total Glory</div><div class="num" id="total">0</div></div>
+    <div class="stat"><div class="muted">Members</div><div class="num" id="count">0</div></div>
+    <div class="stat"><div class="muted">Top Player</div><div class="num" id="top">-</div></div>
+  </div>
+</div>
+
+<div class="section">
+<h2>🏆 Weekly Leaderboard</h2>
+<div id="list"></div>
+</div>
+
+<div class="section card">
+<h2>➕ Add Member</h2>
+<div class="form">
+<div><label class="muted">Player Name</label><input id="name" placeholder="Player name"></div>
+<div><label class="muted">Glory</label><input id="glory" type="number" min="0" placeholder="0"></div>
+<button onclick="addMember()">Add</button>
+</div>
+</div>
+
+<div class="section card">
+<h2>⚙️ Admin Tools</h2>
+<p class="muted">Glory values are saved in this browser for this prototype.</p>
+<button class="danger" onclick="resetWeek()">🔄 Reset Weekly Glory</button>
+</div>
+</div>
+
+<script>
+const ADMIN_PASSWORD="STadmin123"; // Change this before sharing the prototype.
+const defaultMembers=[
+{name:"SATHSARA",glory:18500},{name:"PLAYER_X",glory:16200},
+{name:"DARK BOY",glory:14750},{name:"ST KING",glory:12100},{name:"NIGHT FF",glory:9800}
+];
+let members=JSON.parse(localStorage.getItem("st_members")||"null")||defaultMembers;
+
+function login(){
+ if(document.getElementById("pass").value===ADMIN_PASSWORD){
+   sessionStorage.setItem("st_admin","1");document.getElementById("login").classList.add("hidden");render();
+ }else document.getElementById("err").textContent="Wrong password.";
+}
+function logout(){sessionStorage.removeItem("st_admin");document.getElementById("login").classList.remove("hidden");}
+function save(){localStorage.setItem("st_members",JSON.stringify(members));}
+function render(){
+ members.sort((a,b)=>b.glory-a.glory);
+ document.getElementById("total").textContent=members.reduce((s,m)=>s+m.glory,0).toLocaleString();
+ document.getElementById("count").textContent=members.length;
+ document.getElementById("top").textContent=members[0]?.name||"-";
+ document.getElementById("list").innerHTML=members.map((m,i)=>`
+ <div class="member">
+   <div class="rank">${i<3?["🥇","🥈","🥉"][i]:i+1}</div>
+   <div class="mname"><b>${escapeHtml(m.name)}</b><br><span class="muted">${m.glory.toLocaleString()} Glory</span></div>
+   <div class="actions">
+    <button class="secondary" onclick="editMember(${i})">✏️</button>
+    <button class="danger" onclick="deleteMember(${i})">🗑️</button>
+   </div>
+ </div>`).join("");
+}
+function addMember(){
+ const name=document.getElementById("name").value.trim(), glory=Number(document.getElementById("glory").value);
+ if(!name||!Number.isFinite(glory)||glory<0){alert("Enter a player name and valid Glory.");return}
+ members.push({name,glory});save();render();
+ document.getElementById("name").value="";document.getElementById("glory").value="";
+}
+function editMember(i){
+ const n=prompt("Player name:",members[i].name); if(n===null)return;
+ const g=prompt("Glory:",members[i].glory); if(g===null)return;
+ const num=Number(g); if(!n.trim()||!Number.isFinite(num)||num<0){alert("Invalid details.");return}
+ members[i]={name:n.trim(),glory:num};save();render();
+}
+function deleteMember(i){if(confirm("Remove "+members[i].name+"?")){members.splice(i,1);save();render()}}
+function resetWeek(){if(confirm("Reset ALL weekly Glory to 0?")){members.forEach(m=>m.glory=0);save();render()}}
+function escapeHtml(s){return s.replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}
+if(sessionStorage.getItem("st_admin")==="1")document.getElementById("login").classList.add("hidden");
+render();
+</script>
+</body>
+</html>
