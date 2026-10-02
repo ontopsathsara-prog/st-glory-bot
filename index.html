@@ -22,56 +22,56 @@ label{display:block;color:#a8adc0;font-size:12px;margin-bottom:7px}select,input{
 </head>
 <body>
 <div class="app">
-<header class="header"><div class="brand"><div class="logo">ST</div><div><h1>ST Glory Bot</h1><small>AI Gaming Assistant</small></div></div><div class="pill">● ONLINE</div></header>
+<header class="header"><div class="brand"><div class="logo">ST</div><div><h1>ST Glory Bot</h1><small>AI Gaming Assistant</small></div></div><div class="pill"> ONLINE</div></header>
 
 <section id="home" class="screen active">
 <div class="hero"><h2>Level up your game.</h2><p style="color:#9ea4ba">AI sensitivity - Phone name gahanna!</p>
 <div style="margin-top:18px;background:#0b0e1b;border:1px solid #2b3049;border-radius:14px;padding:14px">
-<label>🔑 API KEY EKA METHANA DANNA (1 parak)</label>
+<label> API KEY EKA METHANA DANNA (1 parak)</label>
 <input id="apiKeyInput" placeholder="AIzaSy... key eka paste karanna">
-<button class="btn" onclick="saveApiKey()">Save Key ✅</button>
+<button class="btn" onclick="saveApiKey()">Save Key </button>
 <p id="keyStatus" style="font-size:11px;color:#8ffaff;margin-top:8px">Key eka nathnam AI wada karanne na!</p>
 </div>
 </div>
 <div class="cards">
-<div class="card" onclick="show('sens')"><h3>🎯 Sensitivity</h3><p style="font-size:12px;color:#8f94a9">AI gen</p></div>
-<div class="card" onclick="show('bot')"><h3>🤖 AI Bot</h3><p style="font-size:12px;color:#8f94a9">Ask AI</p></div>
-<div class="card" onclick="show('glory')"><h3>🏆 Glory</h3><p style="font-size:12px;color:#8f94a9">Track</p></div>
-<div class="card" onclick="show('selling')"><h3>🛒 Selling</h3><p style="font-size:12px;color:#8f94a9">Accounts</p></div>
+<div class="card" onclick="show('sens')"><h3> Sensitivity</h3><p style="font-size:12px;color:#8f94a9">AI gen</p></div>
+<div class="card" onclick="show('bot')"><h3> AI Bot</h3><p style="font-size:12px;color:#8f94a9">Ask AI</p></div>
+<div class="card" onclick="show('glory')"><h3> Glory</h3><p style="font-size:12px;color:#8f94a9">Track</p></div>
+<div class="card" onclick="show('selling')"><h3> Selling</h3><p style="font-size:12px;color:#8f94a9">Accounts</p></div>
 </div>
 </section>
 
 <section id="sens" class="screen">
-<button class="back" onclick="show('home')">← Back</button>
-<div class="panel"><h2>🎯 Sensitivity AI</h2><br>
-<label>📱 Phone Name Gahanna</label>
+<button class="back" onclick="show('home')"> Back</button>
+<div class="panel"><h2> Sensitivity AI</h2><br>
+<label> Phone Name Gahanna</label>
 <input id="phone" placeholder="Ex: Redmi Note 12">
 <label>Play Style</label><select id="style"><option>Balanced</option><option>Fast / Headshot</option><option>Control</option></select>
-<button class="btn" onclick="generateSens()">🤖 AI Generate</button>
+<button class="btn" onclick="generateSens()"> AI Generate</button>
 </div>
-<div id="load" class="panel" style="display:none;text-align:center">AI Hitalanawa... 🤔</div>
-<div id="result" class="panel" style="display:none"><h3>✨ AI Setup</h3>
+<div id="load" class="panel" style="display:none;text-align:center">AI Hitalanawa... </div>
+<div id="result" class="panel" style="display:none"><h3> AI Setup</h3>
 <div class="stat"><span>General</span><b id="g">--</b></div><div class="stat"><span>Red Dot</span><b id="r">--</b></div><div class="stat"><span>2x</span><b id="s2">--</b></div><div class="stat"><span>4x</span><b id="s4">--</b></div>
 <div id="aiFull" style="margin-top:12px;background:#0b0e1b;padding:12px;border-radius:12px;font-size:13px;white-space:pre-wrap"></div>
 </div>
 </section>
 
-<section id="bot" class="screen"><button class="back" onclick="show('home')">← Back</button><div class="panel"><div id="chat" class="chat"><div class="msg bot">Hi! Phone name kiyanna! 🎯</div></div><div class="chatbox"><input id="chatInput" placeholder="Type..."><button class="send" onclick="sendMsg()">➤</button></div></div></section>
-<section id="glory" class="screen"><button class="back" onclick="show('home')">← Back</button><div class="panel"><h2>Glory</h2><p>Coming soon</p></div></section>
-<section id="selling" class="screen"><button class="back" onclick="show('home')">← Back</button><div class="panel"><h2>Account Selling</h2><a class="btn" href="https://wa.me/94762391167" style="display:block;text-align:center;text-decoration:none">WhatsApp Seller</a></div></section>
+<section id="bot" class="screen"><button class="back" onclick="show('home')"> Back</button><div class="panel"><div id="chat" class="chat"><div class="msg bot">Hi! Phone name kiyanna! </div></div><div class="chatbox"><input id="chatInput" placeholder="Type..."><button class="send" onclick="sendMsg()"></button></div></div></section>
+<section id="glory" class="screen"><button class="back" onclick="show('home')"> Back</button><div class="panel"><h2>Glory</h2><p>Coming soon</p></div></section>
+<section id="selling" class="screen"><button class="back" onclick="show('home')"> Back</button><div class="panel"><h2>Account Selling</h2><a class="btn" href="https://wa.me/94762391167" style="display:block;text-align:center;text-decoration:none">WhatsApp Seller</a></div></section>
 </div>
 
 <script>
 function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');}
 
 // API KEY SAVE
-function saveApiKey(){const k=document.getElementById('apiKeyInput').value.trim();if(!k)return alert('Key eka danna bro!');localStorage.setItem('GEMINI_KEY',k);document.getElementById('keyStatus').innerText='✅ Key Saved! AI ready!';document.getElementById('apiKeyInput').value='';alert('Key saved! Dan AI wada! ✅');}
-window.onload=()=>{const k=localStorage.getItem('GEMINI_KEY');if(k)document.getElementById('keyStatus').innerText='✅ Key Saved! AI ready!';}
+function saveApiKey(){const k=document.getElementById('apiKeyInput').value.trim();if(!k)return alert('Key eka danna bro!');localStorage.setItem('GEMINI_KEY',k);document.getElementById('keyStatus').innerText=' Key Saved! AI ready!';document.getElementById('apiKeyInput').value='';alert('Key saved! Dan AI wada! ');}
+window.onload=()=>{const k=localStorage.getItem('GEMINI_KEY');if(k)document.getElementById('keyStatus').innerText=' Key Saved! AI ready!';}
 
 async function callAI(prompt){
   const key=localStorage.getItem('GEMINI_KEY');
-  if(!key){alert('Home eke API key eka danna bro! 🔑');show('home');return null;}
-  const res=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${key}`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({contents:[{parts:[{text:prompt}]}]})});
+  if(!key){alert('Home eke API key eka danna bro! ');show('home');return null;}
+  const res=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent?key=${key}`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({contents:[{parts:[{text:prompt}]}]})});
   const data=await res.json();
   if(data.error){alert('API Error: '+data.error.message);return null;}
   return data.candidates?.[0]?.content?.parts?.[0]?.text||'Error';
