@@ -1,27 +1,75 @@
-<h2>📱 ST GLORY MOBILE OPTIMIZER</h2>
-<p>Select Your Phone Type</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ST Glory - Mobile Optimizer</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#03050b;color:#fff;min-height:100vh}
+body:before{content:"";position:fixed;inset:0;background:radial-gradient(circle at 15% 8%,#6c35ff33,transparent 30%),radial-gradient(circle at 90% 25%,#00e5ff22,transparent 28%);pointer-events:none}
+.app{max-width:520px;margin:auto;padding:18px 16px;position:relative;z-index:1}
+.back{background:#121526;border:1px solid #292e47;color:#c9cde0;padding:10px 15px;border-radius:12px;text-decoration:none;display:inline-block;margin-bottom:18px}
+.hero{padding:22px;border:1px solid #ff004033;border-radius:24px;background:linear-gradient(145deg,#1a1230ee,#0a0e1aee);margin-bottom:18px;text-align:center}
+.hero h1{font-size:22px;background:linear-gradient(90deg,#ff5a7a,#8a5cff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.panel{background:linear-gradient(145deg,#101423,#090c16);border:1px solid #252b45;border-radius:22px;padding:19px;margin-bottom:14px}
+label{display:block;color:#a8adc0;font-size:12px;margin:10px 0 7px}select{width:100%;background:#080b16;border:1px solid #2b3049;color:#fff;padding:13px;border-radius:12px;margin-bottom:5px}
+.btn{width:100%;border:0;border-radius:14px;padding:14px;background:linear-gradient(135deg,#ff3a5e,#8a5cff);color:#fff;font-weight:800;cursor:pointer;margin-top:14px;font-size:15px}
+.result{display:none;animation:pop .3s}
+.stat{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid #20243a;font-size:14px}
+.stat b{color:#8ffaff}
+.tag{display:inline-block;background:#ff00401a;border:1px solid #ff004033;color:#ff7a9a;padding:4px 10px;border-radius:20px;font-size:10px;margin:3px}
+@keyframes pop{from{transform:scale(.9);opacity:0}to{transform:scale(1);opacity:1}}
+</style>
+</head>
+<body>
+<div class="app">
+<a href="index.html" class="back">← Back to ST Glory</a>
+<div class="hero">
+<h1>📱 ST GLORY<br>MOBILE OPTIMIZER</h1>
+<p style="color:#9ea4ba;font-size:13px;margin-top:8px">Lag Fix + DPI + Touch Boost | Like Ravi X Sensi</p>
+<div style="margin-top:12px"><span class="tag">No Ban</span><span class="tag">No Hack</span><span class="tag">100% Safe</span></div>
+</div>
 
-<select id="ram"><option>4GB RAM</option><option>6GB RAM</option><option>8GB+ RAM</option></select>
-<select id="chip"><option>Helio G Series</option><option>Snapdragon 6xx/7xx</option><option>Snapdragon 8 Gen</option><option>Dimensity</option></select>
-<button onclick="optimize()">OPTIMIZE MY PHONE 🔥</button>
+<div class="panel">
+<label>RAM Select</label>
+<select id="ram"><option value="4">4GB RAM</option><option value="6">6GB RAM</option><option value="8">8GB+ RAM (Gaming)</option></select>
+<label>Processor</label>
+<select id="chip"><option>Helio G80 / G85 / G88</option><option>Helio G99 / G95</option><option>Snapdragon 680 / 685</option><option>Snapdragon 7 Gen Series</option><option>Dimensity 700+</option><option>Dimensity 8000+</option></select>
+<label>Game Type</label>
+<select id="game"><option>Free Fire MAX</option><option>Free Fire Normal</option></select>
+<button class="btn" onclick="optimize()">🔥 OPTIMIZE MY PHONE NOW</button>
+</div>
 
+<div id="result" class="panel result">
+<h3 style="color:#ff5a7a;">✅ OPTIMIZED SUCCESS!</h3>
+<div class="stat"><span>DPI Best</span><b id="dpi">--</b></div>
+<div class="stat"><span>Pointer Speed</span><b>MAX</b></div>
+<div class="stat"><span>Touch Sampling</span><b>Boosted</b></div>
+<div class="stat"><span>General Sensitivity</span><b id="gen">100</b></div>
+<div class="stat"><span>Fire Button Size</span><b id="fire">48%</b></div>
+<div style="margin-top:15px;background:#0b0e1b;padding:12px;border-radius:12px;font-size:12px;line-height:1.6;color:#b8bdcf">
+<b style="color:#fff;">LAG FIX STEPS:</b><br>
+1. Developer Option ON > Pointer Speed MAX<br>
+2. Game Space / Game Turbo ON<br>
+3. Remove 3-finger screenshot & gestures<br>
+4. Graphics: Smooth + High FPS ON + Shadow OFF<br>
+5. Clear cache before rank match<br>
+<br>
+<b style="color:#ff7a9a;">Note: Oya phone eka dan Ravi X Sensi level ekata optimize!</b>
+</div>
+<a href="https://wa.me/94762391167?text=Mama%20Mobile%20Optimize%20gatta%20bro" class="btn" style="display:block;text-align:center;text-decoration:none;margin-top:12px;background:#121526;border:1px solid #ff0040;">Buy Full DPI File - Rs.500</a>
+</div>
+
+</div>
 <script>
 function optimize(){
- let r = document.getElementById("ram").value;
- let result = `
-✅ OPTIMIZED FOR ${r}
-
-🎯 Sensitivity: General 100 | Red 90 | 2X 88 | 4X 80
-📲 DPI: ${r.includes("4GB")?"360":r.includes("6GB")?"400":"450"}
-👆 Touch: Set Pointer Speed to MAX + Turn OFF 3-finger screenshot
-🚀 Lag Fix: 
-- Game Space ON
-- Background apps clear
-- Graphics: Smooth + High FPS ON
-- Shadows OFF
-
-🔥 Fire Button: 48% + Fixed Position OFF
-`;
- alert(result);
+ let ram=document.getElementById('ram').value;
+ document.getElementById('dpi').innerText=ram==4?"380":ram==6?"420":"480";
+ document.getElementById('gen').innerText=ram==4?"97":ram==6?"100":"100";
+ document.getElementById('fire').innerText=ram==4?"45%":ram==6?"48%":"52%";
+ document.getElementById('result').style.display='block';
+ window.scrollTo(0,500);
 }
 </script>
+</body>
+</html>
