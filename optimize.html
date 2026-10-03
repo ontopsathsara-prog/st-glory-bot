@@ -1,0 +1,27 @@
+<h2>📱 ST GLORY MOBILE OPTIMIZER</h2>
+<p>Select Your Phone Type</p>
+
+<select id="ram"><option>4GB RAM</option><option>6GB RAM</option><option>8GB+ RAM</option></select>
+<select id="chip"><option>Helio G Series</option><option>Snapdragon 6xx/7xx</option><option>Snapdragon 8 Gen</option><option>Dimensity</option></select>
+<button onclick="optimize()">OPTIMIZE MY PHONE 🔥</button>
+
+<script>
+function optimize(){
+ let r = document.getElementById("ram").value;
+ let result = `
+✅ OPTIMIZED FOR ${r}
+
+🎯 Sensitivity: General 100 | Red 90 | 2X 88 | 4X 80
+📲 DPI: ${r.includes("4GB")?"360":r.includes("6GB")?"400":"450"}
+👆 Touch: Set Pointer Speed to MAX + Turn OFF 3-finger screenshot
+🚀 Lag Fix: 
+- Game Space ON
+- Background apps clear
+- Graphics: Smooth + High FPS ON
+- Shadows OFF
+
+🔥 Fire Button: 48% + Fixed Position OFF
+`;
+ alert(result);
+}
+</script>
