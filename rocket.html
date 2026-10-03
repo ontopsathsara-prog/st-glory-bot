@@ -1,28 +1,40 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ST Glory Rocket</title>
-<style>body{background:#03050b;color:#fff;font-family:Arial;text-align:center;padding:30px}
-.box{background:#121526;border:1px solid #00ff88;border-radius:20px;padding:25px;margin-top:30px}
-.btn{background:linear-gradient(90deg,#00ff88,#00c8ff);border:0;padding:15px 30px;border-radius:12px;color:#000;font-weight:800;font-size:16px;width:100%;margin-top:15px}
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ST GLORY ROCKET</title>
+<style>
+body{background:#000;color:#fff;font-family:sans-serif;text-align:center;padding:20px}
+.box{border:1px solid #00ff88;border-radius:20px;padding:25px;margin-top:50px;background:#0b0e1b}
+.btn{background:linear-gradient(90deg,#00ff88,#00c8ff);border:none;padding:16px 20px;border-radius:12px;font-weight:800;font-size:16px;width:100%;margin-top:20px}
 </style>
 </head>
 <body>
 <h2>🚀 ST GLORY ROCKET</h2>
-<p style="color:#9ea4ba;font-size:13px">Paid Version - Sathi X Style Optimize</p>
+<p>Paid Version - Sathi X Style Optimize</p>
 <div class="box">
 <h3>Click to Enable</h3>
-<p style="font-size:12px;color:#8ffaff;margin:10px 0">Notification eke Shadow Rocket / Sathi X Optimize kiyala pena ganna button eka click karanna</p>
-<button class="btn" onclick="showNoti()">🚀 ENABLE ROCKET BOOST</button>
-<p id="txt" style="margin-top:15px;color:#00ff88;font-size:12px"></p>
+<p style="color:#8ffaff;font-size:13px">Notification eke Shadow Rocket / Sathi X Optimize kiyala pena ganna button eka click karanna</p>
+<button class="btn" onclick="enable()">🚀 ENABLE ROCKET BOOST</button>
+<p id="status" style="margin-top:15px;font-size:12px;color:#ff0"></p>
 </div>
 <script>
-function showNoti(){
- if(Notification.permission!="granted"){Notification.requestPermission();}
- setTimeout(()=>{
-  new Notification("Shadow Rocket 🚀",{body:"Sathi X Optimize Enabled ✅\nTouch Boost: ON | Lag Fixed | DPI: 420",icon:"https://cdn-icons-png.flaticon.com/512/888/888879.png"});
-  document.getElementById('txt').innerText="✅ Done! Notification panel eka check karanna! Udin Shadow Rocket kiyala wetila athi!";
- },1000);
+async function enable(){
+  if(!("Notification" in window)){alert("Browser eke notification support na");return}
+  let perm = await Notification.requestPermission();
+  document.getElementById("status").innerText = "Permission: " + perm;
+  if(perm==="granted"){
+    new Notification("🚀 Shadow Rocket - Sathi X",{
+      body:"ST GLORY ROCKET BOOST ENABLED! Game eka dan ultra smooth! 🔥",
+      icon:"https://cdn-icons-png.flaticon.com/512/135/135702.png"
+    });
+    new Notification("⚡ SATHI X OPTIMIZE ACTIVE",{
+      body:"DPI & Sensitivity Optimized Successfully!"
+    });
+    alert("Udin notification panel eka balanna yko! 2k enawa!");
+  }else{
+    alert("Bro Allow denna one! Chrome settings > Notifications > Allow karanna");
+  }
 }
 </script>
 </body>
